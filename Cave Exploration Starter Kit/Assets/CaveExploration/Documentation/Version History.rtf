@@ -1,0 +1,43 @@
+Version History
+
+1. 
+Initial Release
+
+1.1. 
+- Fixed issue where collectibles were not spawning after first level.\
+- Added an introductory text, which can be used to explain how to play. See IntroductorySpeech script attached to CharacterSpeech object in example scene.\
+
+1.2.
+- Collectibles seek towards the player when in range (range and seek speed defined by Collectible script on Collectible object).\
+- Added additional scenes with information on: collectibles, enemies, generating the environment, player, and player speech.\
+
+1.3.
+- Added comments for all public methods
+- Included code documentation PDF
+- Added version for Unity 5.0.x and 4.x
+
+1.4.
+- Removed unnecessary debug
+- Updated project to 5.3.5
+- Updated web player to WebGL
+
+1.5.
+- Updated project to 5.5.
+- Fixed issue where nodes were incorrectly flagged as floor nodes (leading to floating enemies that should be on the floor).
+- Fixed issue where players jetpack particle system was constantly playing (should only be showing particles when actually using the jetpack).
+- Increased radius (0.1 to 0.15) of collider used to decide if player is touching the ground. 
+- You can now set the size rectangular and circular areas required to spawn enemies.
+
+1.6.
+- Fixed issue where floor nodes from unconnected caverns were cached.
+- Added option "DrawBackgrounds" in GridManager. Disable to increase performance by disabling background tiles.
+- Changed jetpack so it is easier to activate.
+- Enemies no longer spawn right next to player at the start of a level.
+- Enemies no longer attack until player finished spawning.
+- Collectibles no longer seek player while introductory speech is playing or player is spawning.
+- Improved performance by reducing draw calls.
+- Sprites are now added to the exterior of caves.
+- Tilesize is now calculated based on sprite bounds rather than being manually set. If you notice lines between the tiles, turn off antialiasing in Edit -> Project Settings -> Quality
+
+1.61
+- Moved parent object creation from Start to GenerateWithSeed method in GridManager.
