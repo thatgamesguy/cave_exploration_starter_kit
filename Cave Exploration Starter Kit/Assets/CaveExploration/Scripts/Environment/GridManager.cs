@@ -174,8 +174,6 @@ namespace CaveExploration
                 nodeClusterManager.IdentifyClusters(Grid, GridSize);
             }
 
-
-
             RemoveExtraneous();
 
             // Must be called before floor cells are cached.
@@ -545,7 +543,7 @@ namespace CaveExploration
 
                     var cell = ObjectManager.instance.GetObject(Cell.name, Utilities.instance.GetNodePosition(node));
 
-                    var collider = GetCellCollider(cell);
+                    var cellCollider = GetCellCollider(cell);
 
                     int sortingOrder = 0;
 
@@ -553,16 +551,16 @@ namespace CaveExploration
 
                     if (node.NodeState == NodeType.Background || node.NodeState == NodeType.Entry || node.NodeState == NodeType.Exit)
                     {
-                        collider.enabled = true;
-                        collider.isTrigger = true;
+                        cellCollider.enabled = true;
+                        cellCollider.isTrigger = true;
 
                     }
                     else
                     {
                         DefineWallType(node);
 
-                        collider.enabled = true;
-                        collider.isTrigger = false;
+                        cellCollider.enabled = true;
+                        cellCollider.isTrigger = false;
                         sortingOrder = 5;
 
                         layerMask = LayerMask.NameToLayer("Cave");
@@ -844,6 +842,7 @@ namespace CaveExploration
             var topNodes = GetTopRow();
 
             // Top left.
+
             var topLeft = ObjectManager.instance.GetObject(Cell.name,
                               Utilities.instance.GetNodePosition(topNodes[0]) + (new Vector2(-tileSize.x, tileSize.y)));
             var topLeftRend = topLeft.GetComponent<SpriteRenderer>();
@@ -852,10 +851,11 @@ namespace CaveExploration
             topLeft.transform.SetParent(parent.transform);
             topLeft.isStatic = true;
 
+        
             // Top right.
             var topRight = ObjectManager.instance.GetObject(Cell.name,
                                Utilities.instance.GetNodePosition(topNodes[topNodes.Count - 1]) + (new Vector2(tileSize.x, tileSize.y)));
-            var topRightRend = topLeft.GetComponent<SpriteRenderer>();
+            var topRightRend = topRight.GetComponent<SpriteRenderer>();
             topRightRend.sortingOrder = 5;
             topRightRend.sprite = texturePack.GetSpriteFromCellType(NodeType.WallTopRight);
             topRight.transform.SetParent(parent.transform);
